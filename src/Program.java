@@ -2,26 +2,44 @@ import java.util.Scanner;
 
 public class Program {
 
-        public static void main(String[] args) {
-            Scanner sc = new Scanner(System.in);
-            scientificCalculator sciCalc = new scientificCalculator();
-            System.out.println("1(Add),2(Subtract) , 3(Multiply), 4(Divide), 5(Power), 6(Sqrt), 7(Sine), 8(Cosine), 9(Tangent)");
-            int option = sc.nextInt();
-            System.out.println("Enter first number: ");
-            double x = sc.nextDouble();
-            System.out.println("Enter Second number: ");
-            double y = sc.nextDouble();
-            double result;
-            Calculator calculator = new Calculator();
-            if ( option >= 1 && option <=4){
-            result = switch (option) {
-                case 1 -> calculator.add(x, y);
-                case 2 -> calculator.subtract(x, y);
-                case 3 -> calculator.multiply(x, y);
-                case 4 -> calculator.divide(x, y);
-                default -> throw new IllegalArgumentException("Error");
-            };
-            System.out.println(result);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        scientificCalculator sciCalc = new scientificCalculator();
+        Calculator calculator = new Calculator();
+
+        System.out.println("Choose an operation");
+        System.out.println("1(Add),2(Subtract) , 3(Multiply), 4(Divide), 5(Power), 6(Sqrt), 7(Sine), 8(Cosine), 9(Tangent)");
+        int option = sc.nextInt();
+
+        double x = 0, y = 0;
+        if (option >= 1 && option <= 4 || option == 5) {
+            x = getUserInput(sc, "Enter the first number: ");
+            if (option != 6) {
+                y = getUserInput(sc, "Enter the second number: ");
+            }
+        } else if (option >= 6) {
+            x = getUserInput(sc, "Enter the number: ");
         }
 
-}}
+
+        double result = 0;
+        result = switch (option) {
+            case 1 -> calculator.add(x, y);
+            case 2 -> calculator.subtract(x, y);
+            case 3 -> calculator.multiply(x, y);
+            case 4 -> calculator.divide(x, y);
+            case 5 -> sciCalc.power(x,y);
+            case 6 -> sciCalc.sqrt(x);
+            case 7 -> sciCalc.sine(x);
+            case 8 -> sciCalc.cosine(x);
+            case 9 -> sciCalc.tangent(x);
+            default -> throw new IllegalArgumentException("Error");
+        };
+        System.out.println(result);
+    }
+    private static double getUserInput (Scanner sc, String number){
+        System.out.println(number);
+        return sc.nextDouble();}
+}
+
+
