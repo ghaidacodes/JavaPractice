@@ -16,13 +16,21 @@ public class Program {
             x = getUserInput(sc, "Enter the first number: ");
             if (option != 6) {
                 y = getUserInput(sc, "Enter the second number: ");
+                if (option == 4 && y == 0){
+                    System.err.println("Can not divide by zero");
+                    return;
+                }
             }
         } else if (option >= 6) {
             x = getUserInput(sc, "Enter the number: ");
+            if (option == 6 && x < 0){
+                System.err.println("No square root of a negative number.");
+                return;
+            }
         }
 
 
-        double result = 0;
+        double result;
         result = switch (option) {
             case 1 -> calculator.add(x, y);
             case 2 -> calculator.subtract(x, y);
