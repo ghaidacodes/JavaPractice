@@ -13,14 +13,13 @@ public class Program {
 
         double x = 0, y = 0;
         if (option >= 1 && option <= 4 || option == 5) {
-            x = getUserInput(sc, "Enter the first number: ");
-            if (option != 6) {
-                y = getUserInput(sc, "Enter the second number: ");
+              x = getUserInput(sc, "Enter the first number: ");
+              y = getUserInput(sc, "Enter the second number: ");
                 if (option == 4 && y == 0){
                     System.err.println("Can not divide by zero");
                     return;
                 }
-            }
+
         } else if (option >= 6) {
             x = getUserInput(sc, "Enter the number: ");
             if (option == 6 && x < 0){
