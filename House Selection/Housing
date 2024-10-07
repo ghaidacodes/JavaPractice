@@ -1,0 +1,105 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Welcome to the housing application!\n Please answer the following questions to determine your eligibility for on-campus housing.\n Let's begin!(Press Enter)" );
+        sc.nextLine();
+
+        System.out.println("Enter your age:");
+        int age= sc.nextInt();
+
+        System.out.println("What year are you in?");
+        System.out.println("\t1: Freshman");
+        System.out.println("\t2: Sophomore");
+        System.out.println("\t3: Junior");
+        System.out.println("\t4: Senior");
+        System.out.println("\t5: Super Senior");
+        System.out.print("Enter Selection: ");
+        int year = sc.nextInt();
+
+        System.out.println("Do you need any special assistance?(y/n)");
+        //asking about having a disability
+        char needs= sc.next().charAt(0);
+        System.out.println("Are you receive financial aid?(y/n)");
+        char fafsa= sc.next().charAt(0);
+
+        System.out.println("Are you an international student?(y/n)");
+        char intr= sc.next().charAt(0);
+        System.out.println("Are you an out-of-state student?(y/n)");
+        char outState= sc.next().charAt(0); //out of state student or not
+
+        System.out.println("Are you a part-time or full-time student?");
+        System.out.println("\t1: Part-Time");
+        System.out.println("\t2: Full-Time");
+        System.out.print("Enter Selection: ");
+        int studentType = sc.nextInt();
+
+        System.out.println("Do you have access to a stable internet connection? (y/n)");
+        char net= sc.next().charAt(0);
+        System.out.println("Are you on academic probation? (y/n)");
+        char probation= sc.next().charAt(0);
+
+        System.out.println("How many miles are you away from school?");
+        int miles= sc.nextInt();
+        System.out.println("Do you drive or commute to campus?");
+        char transportation= sc.next().charAt(0);
+
+
+        //calculating the points:
+        int pts=0;
+            if (year == 1)
+            {
+                pts += 3;
+            } else if (year==2 || year==3) {
+                pts += 2;
+            }
+            else {
+                pts += 1;
+            }
+            if (needs == 'y')
+            {
+                pts += 5;
+            }
+            if (fafsa=='y')
+            {
+                pts += 4;
+            }
+            if (intr== 'y' || outState=='y'){
+                pts += 4;
+            }
+            if (studentType == 1) {
+                pts += 1;
+            }
+            else {pts += 3; }
+            if (net=='n')
+            {
+                pts += 2;
+            }
+            if (probation=='y'){
+                pts -=1;
+            }
+           if (miles == 5)
+           {
+                pts += 2;
+           } else if (miles == 6) {
+               pts += 3;
+           } else if (miles == 7 || miles > 7) {
+               pts +=4;
+           }
+           if (transportation=='c')
+           {
+               pts +=1;
+           }
+           else
+           {
+               pts -=1 ;
+           }
+
+
+        if (age>23){
+                pts -=1;
+            }
+            System.out.println("Your housing points are: " + pts);
+    }
+    }
